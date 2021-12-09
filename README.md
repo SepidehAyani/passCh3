@@ -19,4 +19,4 @@ https://sepidehayani.github.io/passCh3/
 ![plot](/Assets/homepage.png)
 
 ## Demo:
-![Demo](/Assets/demo.mov)
+[![Watch the demo](/Assets/demo_pic.png)](/Assets/demo.mov)
