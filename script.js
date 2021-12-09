@@ -9,65 +9,57 @@ const keys = {
   specialCha: "!@#$%^&*()_+~\\`|}{[]:;?><,./-="
 }
 
-//create an array and put all these functions in the array
+//create an array and put all the functions in the array to go through each array to randomly pick a char
 const getKey = [
   function upperCase() {
-    return keys.upperCase[randomUpperCase];
+    return keys.upperCase[Math.floor(Math.random() * keys.upperCase.length)];
   },
   function lowerCase() {
-    return keys.lowerCase[randomLowerCase];
+    return keys.lowerCase[Math.floor(Math.random() * keys.lowerCase.length)];
   },
   function number() {
-    return keys.number[randomNum];
+    return keys.number[Math.floor(Math.random() * keys.number.length)];
   },
   function specialCha() {
-    return keys.specialCha[randomSpecialCha];
+    return keys.specialCha[Math.floor(Math.random() * keys.specialCha.length)];
   }
 ];
 
-//create a random letter up to the length of the each key 
-const randomUpperCase = Math.floor(Math.random() * keys.upperCase.length);
-const randomLowerCase = Math.floor(Math.random() * keys.lowerCase.length);
-const randomNum = Math.floor(Math.random() * keys.number.length);
-const randomSpecialCha = Math.floor(Math.random() * keys.specialCha.length);
-const randomKey = Math.floor(Math.random() * getKey.length);
-
-const upperCaseCheck = document.getElementById("upperCase").checked;
-const lowerCaseCheck = document.getElementById("lowerCase").checked;
-const numberCheck = document.getElementById("number").checked;
-const specialChaCheck = document.getElementById("specialCha").checked;
-
-const length = document.getElementById("length");
-const passwordText = document.querySelector("#password");
-let password = "";
-
-//generate password function
+// Generate password function
 function generatePassword() {
-  //check if at least one checkbox is checked
+
+  //const for each check
+  const upperCaseCheck = document.getElementById("upperCase").checked;
+  const lowerCaseCheck = document.getElementById("lowerCase").checked;
+  const numberCheck = document.getElementById("number").checked;
+  const specialChaCheck = document.getElementById("specialCha").checked;
+
+  const length = document.getElementById("length");
+  const passwordText = document.querySelector("#password");
+  let password = "";
+
+
+  // Check if at least one criteria is checked
   if (upperCaseCheck + lowerCaseCheck + numberCheck + specialChaCheck === 0) {
     alert("You are missing the password criteria, please check at least one of the boxes");
     return;
   }
-  while (length.value > password.length) {
-    let keyToAdd = getKey[randomKey];
+  while (length.value >= password.length) {
+    let keyToAdd = getKey[Math.floor(Math.random() * getKey.length)];
     let isChecked = document.getElementById(keyToAdd.name).checked;
     if (isChecked) {
       password += keyToAdd();
     }
   }
-    // console.log('this is password: ', password);
-      passwordText.value = password;
+  passwordText.value = password;
 }
 
-//Write password to the #password input
+// Write password to the #password input
 function writePassword() {
-  // console.log('write password function start');
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  generatePassword();
 
   passwordText.value = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-// console.log('this is the click function');
