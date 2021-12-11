@@ -45,7 +45,7 @@ function generatePassword() {
   }
 
   if (parseInt(length.value) >= 8 && parseInt(length.value) <= 128) {
-    while (parseInt(length.value) >= password.length) {
+    while (parseInt(length.value) > password.length) {
       let keyToAdd = getKey[Math.floor(Math.random() * getKey.length)];
       let isChecked = document.getElementById(keyToAdd.name).checked;
       if (isChecked) {
