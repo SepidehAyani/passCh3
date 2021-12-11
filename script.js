@@ -35,10 +35,8 @@ function generatePassword() {
   const specialChaCheck = document.getElementById("specialCha").checked;
 
   const length = document.getElementById("length");
-  const length_min = document.querySelector("min");
+  const passwordText = document.querySelector("#password");
   let password = "";
-
-
 
   // Check if at least one criteria is checked
   if (upperCaseCheck + lowerCaseCheck + numberCheck + specialChaCheck === 0) {
@@ -47,7 +45,7 @@ function generatePassword() {
   }
 
   if (parseInt(length.value) >= 8 && parseInt(length.value) <= 128) {
-    while (parseInt(length.value) > password.length) {
+    while (parseInt(length.value) >= password.length) {
       let keyToAdd = getKey[Math.floor(Math.random() * getKey.length)];
       let isChecked = document.getElementById(keyToAdd.name).checked;
       if (isChecked) {
@@ -55,6 +53,7 @@ function generatePassword() {
       }
     }
     passwordText.value = password;
+
   }
   else {
     alert('Password must be 8 to 128 characters in length')
